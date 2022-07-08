@@ -16,56 +16,58 @@ import com.example.navigationyt.ui.theme.NavigationYtTheme
 
 class BottomSheetActivity : ComponentActivity() {
 
+
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             NavigationYtTheme() {
                 Surface {
-                    BottomSheetNavigator() {
+                    
+                    BottomSheetNavigator {
                         Navigator(screen = BottomSheetScreen)
                     }
                 }
             }
         }
     }
-}
-
-object BottomSheetScreen : Screen{
     
-    @Composable
-    override fun Content() {
-        val navigator = LocalBottomSheetNavigator.current
-        Button(onClick = { 
-            navigator.show(SheetContents)
-        }) {
-            Text(text = "Click here")
+    
+    object BottomSheetScreen : Screen{
+        
+        @Composable
+        override fun Content() {
+            val navigator = LocalBottomSheetNavigator.current
+            Button(onClick = { 
+                navigator.show(SheetContent)
+            }) {
+                Text(text = "Click here")
+            }
         }
     }
-
-}
-
-object SheetContents : Screen{
     
-    @Composable
-    override fun Content() {
-       
-        LazyColumn{
-            item {
-                val navigator = LocalBottomSheetNavigator.current
-                IconButton(onClick = { 
-                    navigator.hide()
-                }) {
-                    Icon(Icons.Default.Close, contentDescription = "" )
+    object SheetContent : Screen{
+        
+        @Composable
+        override fun Content() {
+            LazyColumn{
+                
+                item { 
+                    val navigator = LocalBottomSheetNavigator.current
+                    IconButton(onClick = { 
+                        navigator.hide()
+                    }) {
+                        Icon(Icons.Default.Close, contentDescription = "")
+                    }
                 }
+                
+                items(10){data->
+                    Text("count $data")
+                }
+                
             }
-            
-            items(10){ count->
-                Text("count $count")
-            }
-            
-            
         }
+
     }
 
 
