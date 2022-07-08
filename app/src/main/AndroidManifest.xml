@@ -14,8 +14,9 @@
         android:theme="@style/Theme.NavigationYt"
         tools:targetApi="31">
         <activity android:name=".MainActivity"/>
+        <activity android:name=".bottomNavigation.BottomNavigationActivity"/>
         <activity
-            android:name=".bottomNavigation.BottomNavigationActivity"
+            android:name=".bottomsheet.BottomSheetActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.NavigationYt">
